@@ -1,0 +1,11 @@
+<div class="usuario_info">
+  <a href="<%= usuario_path(usuario_corrente) %>">
+    <%= gravatar_image_tag usuario_corrente.email, :size => 30 %>
+    <div class="usuario_nome">
+      <%= h usuario_corrente.nome %>
+    </div>
+    <div class="usuario_docs">
+      <%= pluralize(usuario_corrente.documentos.count, "Documento") %>
+    </div>
+  </a>
+</div>

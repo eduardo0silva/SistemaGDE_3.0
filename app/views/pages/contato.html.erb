@@ -1,0 +1,55 @@
+<h1>Contato</h1>
+<p id="errorExplanation">
+ N&atilde;o funciona. Em desenvolvimento.
+</p>
+
+
+<% form_tag :action => 'enviar_email' do %>
+  <table border="0">
+   <tr>
+     <th>Nome:</th> 
+      <td><%= text_field_tag :nome %></td>
+    </tr>
+<tr>
+    <th>Email:</th>
+     <td><%= text_field_tag :from %></td>
+</tr>
+<tr>
+<th>Assunto:</th>
+<td><%= text_field_tag :subject %></td>
+</tr>
+</table>
+
+<%= text_area_tag :message %> <p />
+
+<%= submit_tag "Enviar" %>
+
+<% end %>
+
+
+
+
+
+
+<!--form>
+	<input type="textfield">
+	<br>
+	<input type="textfield">
+	<br>
+	
+	
+	<!- TODO ->
+	
+	<textarea> N&atilde;o funciona.</textarea>
+	<br>
+
+	<button class="button" type="submit" class="button">
+		<img src="/images/icons/tick.png" alt="Enviar" /> Enviar
+	</button>
+
+	<button class="button" type="reset" class="button">
+		<img src="/images/icons/cross.png" alt="Cancelar" /> Cancelar
+	</button>
+	<br>
+
+</form-->	

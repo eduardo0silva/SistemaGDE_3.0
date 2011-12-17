@@ -1,0 +1,25 @@
+<div class="frente">
+	
+	<div class="sidebar">
+	
+		<%= gravatar_image_tag @usuario.email %><br>
+		<strong>Nome</strong> <%= link_to @usuario.nome, usuario_path(@usuario) %><br>
+		<strong>Documentos</strong> <%= @usuario.documentos.count %>
+
+	</div>
+	
+	<div class="main">
+		<% unless @usuario.documentos.empty? %>
+			
+			<%= render @documentos %>
+	
+			<%= will_paginate @documentos %>
+	
+		<% else %>
+	
+			Este usu&aacute;rio n&atilde;o possui documento.
+	
+		<% end %>
+	</div>
+
+</div>

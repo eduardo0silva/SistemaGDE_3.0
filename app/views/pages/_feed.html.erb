@@ -1,0 +1,7 @@
+<br>
+<% unless @feed.empty? %>
+  <div>
+    <%= render @feed %>
+  </div>
+  <%= will_paginate @feed %>
+<% end %>

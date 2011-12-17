@@ -1,0 +1,69 @@
+<!-- 3. Adiciona o container -->
+<div id="pizza" style="width: 500px; height: 300px; margin: 0 auto"></div>
+
+<!-- 2. Adiciona o JavaScript to initialize the chart on document ready -->
+<script type="text/javascript">
+
+	var chart;
+	$(document).ready(function() {
+		chart = new Highcharts.Chart({
+			chart: {
+				renderTo: 'pizza',
+				margin: [16, 10, 6, 10]
+			},
+			title: {
+				text: 'Total de documentos por usuários'
+			},
+			plotArea: {
+				shadow: null,
+				borderWidth: null,
+				backgroundColor: null
+			},
+			tooltip: {
+				formatter: function() {
+					return '<b>'+ this.point.name +'</b>: '+ (this.y / + <%= @documentos.count %>)*100 + '%';
+				}
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'hand',
+					dataLabels: {
+						enabled: true,
+						formatter: function() {
+							if (this.y > 5) return this.point.name;
+						},
+						color: 'white',
+						style: {
+							font: '13px Trebuchet MS, Verdana, sans-serif'
+						}
+					}
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				style: {
+					left: 'auto',
+					bottom: 'auto',
+					right: '5px',
+					top: '60px'
+				}
+			},
+		    series: [{
+				type: 'pie',
+				name: 'Documentos por Usuario',
+				data: [
+						<% @usuarios.each do |usuario| %>
+							{
+								name: '<%=usuario.nome%>',
+								y: <%=usuario.documentos.count%>
+								//sliced: true
+							},
+						<% end %>
+				
+				]
+			}]
+		});
+	});
+		
+</script>

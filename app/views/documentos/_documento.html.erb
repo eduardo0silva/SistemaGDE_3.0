@@ -1,0 +1,12 @@
+<div class="documentos">
+	<div class="gravatar"><%= gravatar_for documento.usuario %></div>
+	<div class="assunto"> <%= h documento.assunto%></div>
+	<div class="tempo">Criado em:  <%= documento.created_at.strftime("%d de %b de %Y") %>.</div>
+	
+	<% if usuario_corrente?(documento.usuario) %>
+		<div class="editar_documento">
+			<%= link_to image_tag("btExcluir.gif", :border=>0, :alt=>"Excluir documento", :title => "Excluir documento"), documento, :method => :delete, :confirm=> "Tem certeza?" %>
+			<%= link_to image_tag("btEditar.gif", :border=>0, :alt=>"Editar Documento", :title => "Editar Documento"), edit_documento_path(documento) %>
+		</div>
+	<% end %>
+</div>

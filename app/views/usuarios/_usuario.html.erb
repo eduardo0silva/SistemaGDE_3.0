@@ -1,0 +1,7 @@
+<li>
+	<%= gravatar_image_tag usuario.email, :size => 30 %>
+	<%= link_to h(usuario.nome), usuario %>
+	<% if usuario_corrente.admin? %>
+		<%= link_to "Excluir", usuario, :method => :delete, :confirm => "Deseja excluir este usu&aacute;rio?" %>
+	<% end %>
+</li>

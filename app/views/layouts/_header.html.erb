@@ -1,0 +1,37 @@
+<div id="header" class="round">
+	
+<%= link_to logo, root_path %>
+	
+	<ul class="navigation round">
+		<li><%= link_to "Principal", root_url %></li>
+		<li><%= link_to "Sobre", sobre_url %></li>
+		<% if usuario_logado? %>
+			<li><%= link_to "Usu&aacute;rios", usuarios_path %>
+				<ul>
+					<li><%= link_to "Novo Usu&aacute;rio", new_usuario_path%></li>
+					<li><%= link_to "Pesquisar Usu&aacute;rio", usuarios_path%></li>
+				</ul>
+			</li>
+			
+			<li><%= link_to "Documentos", documentos_path %>
+				<ul>
+					<li><%= link_to "Novo Documento", new_documento_path%></li>
+					<li><%= link_to "Pesquisar Documento", documentos_path%></li>
+				</ul>
+			</li>
+			
+			<li><%= link_to "Sair", logout_path, :method => :delete %></li>
+	
+			<li><%= link_to "Perfil", usuario_corrente %></li>
+	
+			<li><%= link_to "Configuração", edit_usuario_path(usuario_corrente)%></li>
+		
+		<% else %>			
+		
+			<li><%= link_to "Acessar", login_path %></li>
+		
+		<% end %>
+	
+	</ul>
+	
+</div>

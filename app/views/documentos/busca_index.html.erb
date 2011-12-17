@@ -1,0 +1,129 @@
+<h1>Listagem dos documentos</h1>
+
+ <%form_tag busca_index_cd documentos_path, :method => "get" do%>
+ <input id="busca" name="busca" type="text" onKeyUp="pesquisa(this.value)"/>
+ <%=submit_tag "Buscar"%>
+ <% end %>
+
+<div id="pagina">
+10	</div>
+
+
+<table>
+  <tr>
+    <th>Numero</th>
+    <th>Remetente</th>
+    <th>Assunto</th>
+    <th>Data</th>
+    <th>Alterado em</th>
+	<th colspan="3">A&ccedil;&atilde;o</th>
+  </tr>
+
+<% @documentos.each do |documento| %>
+  <tr>
+    <td><%=h documento.numero %></td>
+    <td><%=h documento.remetente %></td>
+    <td><%=h documento.assunto %></td>
+    <td><%=h documento.created_at.strftime("%d de %b de %Y") %></td>
+    <td><%=h documento.updated_at.strftime("%d de %b de %Y") %></td>
+    <td><%= link_to 'Exibir', documento %></td>
+    <td><%= link_to 'Editar', edit_documento_path(documento) %></td>
+    <td><%= link_to 'Excluir', documento, :confirm => 'Tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo documento', new_documento_path %>
+
+
+<!-- script para o ajax-->
+<script>
+
+function pesquisa(valor)
+
+{
+
+//FUNÇÃO QUE MONTA A URL E CHAMA A FUNÇÃO AJAX
+//aqui ele vai montando a busca
+url="/documentos/busca_index?busca="+valor+"&commit=Buscar";
+
+ajax(url);
+
+}
+
+function ajax(url)
+
+{
+
+//alert(nick);
+
+//alert(dest);
+
+//alert(msg);
+
+req = null;
+
+// Procura por um objeto nativo (Mozilla/Safari)
+
+if (window.XMLHttpRequest) {
+
+req = new XMLHttpRequest();
+
+req.onreadystatechange = processReqChange;
+
+req.open("GET",url,true);
+
+alert(msg);
+
+//req.send(null);
+
+// Procura por uma versão ActiveX (IE)
+
+} else if (window.ActiveXObject) {
+
+req = new ActiveXObject("Microsoft.XMLHTTP");
+
+if (req) {
+
+req.onreadystatechange = processReqChange;
+
+req.open("GET",url,true);
+
+req.send();
+
+}
+
+}
+
+}
+
+function processReqChange()
+
+{
+
+// apenas quando o estado for "completado"
+
+if (req.readyState == 4) {
+
+// apenas se o servidor retornar "OK"
+
+if (req.status == 200) {
+
+// procura pela div id="pagina" e insere o conteudo
+
+// retornado nela, como texto HTML
+
+document.getElementById('pagina').innerHTML = req.responseText;
+
+} else {
+
+alert("Houve um problema ao obter os dados: n" + req.statusText);
+
+}
+
+}
+
+}
+</script>

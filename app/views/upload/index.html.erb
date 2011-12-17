@@ -1,0 +1,11 @@
+<h1>Arquivo Upload</h1>
+
+<% form_for :modelo, :url => upload, :html => {:multipart => true} do |f| %>
+
+<p><label for="upload_file">Selecione o Arquivo</label> : 
+
+<%= f.file_field :modelo %></p>
+
+<%= f.submit "Upload" %>
+
+<% end %>

@@ -1,0 +1,31 @@
+<% if usuario_logado? %>
+	<div class="frente">
+		
+		
+		<div class="sidebar">
+			<%= render 'pages/usuario_info' %>
+		</div>
+		
+			<div class="main">
+				<h2 class="micropost">Documentos Recentes</h2>
+				<%= render 'pages/feed'%>
+			</div>
+			
+		<div class="estatisticas">
+			<%= render 'pages/pizza_estatistica'%>
+		</div>
+		
+	</div>
+	
+<% else %>
+<h1>P&aacute;gina Principal</h1>
+<div id="publicidade">
+<p>
+Bem vindo.
+</p>
+</div>
+<%= image_tag("pennaPreta.jpg", :alt => "Projeto Penna", :class => "round") %>
+<%= link_to "Cadastre-se agora!", cadastro_url, :class => "signup_button round" %>
+
+
+ <% end %>

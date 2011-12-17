@@ -1,0 +1,37 @@
+<h2>Cadastro</h2>
+<p>Fa&ccedil;a o seu cadastro para utilizar o sistema.</p>
+<hr/>
+<%= form_for(@usuario) do |f| %>
+	  <ul>
+      <% @usuario.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+	
+	<div class="campoTexto">
+		<%= f.label :nome %><br/>
+		<%= f.text_field :nome %>
+	</div>
+	
+	<div class="campoTexto">
+		<%= f.label :email %><br/>
+		<%= f.text_field :email %>
+	</div>
+	
+	<div class="campoTexto">
+		<%= f.label :senha %><br/>
+		<%= f.password_field :senha %>
+	</div>
+	
+	<div class="campoTexto">
+		<%= f.label :senha_confirmation, "Confirmação" %><br/>
+		<%= f.password_field :senha_confirmation %>
+	</div>
+	
+	<div class="actions">
+		<button class="button" type="submit">
+			<img src="/images/icons/tick.png" alt="Cadastrar" /> Cadastrar
+		</button>
+	</div>
+
+<% end %>

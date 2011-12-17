@@ -1,0 +1,29 @@
+<h1>Listagem dos documentos</h1>
+
+<table>
+  <tr>
+    <th>Numero</th>
+    <th>Remetente</th>
+    <th>Assunto</th>
+    <th>Data</th>
+    <th>Alterado em</th>
+	<th colspan="3">A&ccedil;&atilde;o</th>
+  </tr>
+
+<% @documentos.each do |documento| %>
+  <tr>
+    <td><%=h documento.numero %></td>
+    <td><%=h documento.remetente %></td>
+    <td><%=h documento.assunto %></td>
+    <td><%=h documento.created_at.strftime("%d de %b de %Y") %></td>
+    <td><%=h documento.updated_at.strftime("%d de %b de %Y") %></td>
+    <td><%= link_to 'Exibir', documento %></td>
+    <td><%= link_to 'Editar', edit_documento_path(documento) %></td>
+    <td><%= link_to 'Excluir', documento, :confirm => 'Tem certeza?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo documento', new_documento_path %>
